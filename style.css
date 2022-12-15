@@ -1,0 +1,32 @@
+* {
+  font-family: 'M PLUS Rounded 1c', Avenir Next, Helvetica, sans-serif;
+  color: black;
+  padding-top: 5px;
+  
+}
+ body{
+    display: block;
+    background-color: orangered;
+ }
+ .wrapper {
+    height: 525px;
+    width: 360px;
+    color: black;
+    background: antiquewhite;
+    border-radius: 1rem;
+    padding: 1.2rem;
+    margin: 20px auto;
+    justify-content: center;
+  }
+  .container {
+    justify-content: center;
+  }
+  #heroImage {
+    text-align: center;
+  }
+  .action {
+    text-align: center;
+  }
+  .intro {
+    text-align: center;
+  }
