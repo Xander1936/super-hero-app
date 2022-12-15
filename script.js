@@ -29,9 +29,14 @@ const getSuperHero = (id,name) => {
     .then(response => response.json())
     //Grab the hero image div and attach the image dynamically from the api
     .then(json => {
-        //console.log(json)
-        // 'heroImageDiv +=' add a new hero image div every we clicked on the new hero button
-        heroImageDiv.innerHTML = `<img src="${json.image.url}" height=300 width=300 />`
+        console.log(json.powerstats)
+        const name = `<h2>${json.name}</h2>`
+        const intelligence = `<p>🧠Intelligence: ${json.powerstats.intelligence}</p>`
+        const strength = `<p>🤼‍♂️ Strength: ${json.powerstats.strength}</p>`
+        const speed = `<p>🏃‍♂️Speed: ${json.powerstats.speed}</p>`
+        const power = `<p>💪Power: ${json.powerstats.power}</p>`
+        // 'heroImageDiv +=' add a new hero name + image div every time we clicked on the new hero button
+        heroImageDiv.innerHTML = `${name}<img src="${json.image.url}" height=200 width=200 />${intelligence}${strength}${speed}${power} `
     })        
 }
 
@@ -43,9 +48,14 @@ const getSearchSuperHero = (name) => {
     //Grab the hero image div and attach the image dynamically from the api
     .then(json => {
         const hero = json.results[0]
+        const name = `<h2>${hero.name}</h2>`
+        const intelligence = `<p>🧠Intelligence: ${hero.powerstats.intelligence}</p>`
+        const strength = `<p>🤼‍♂️ Strength: ${hero.powerstats.strength}</p>`
+        const speed = `<p>🏃‍♂️Speed: ${hero.powerstats.speed}</p>`
+        const power = `<p>💪Power: ${hero.powerstats.power}</p>`
         //console.log(hero)
     // 'heroImageDiv +=' add a new hero image div every we clicked on the new hero button
-    heroImageDiv.innerHTML = `<img src="${hero.image.url}" height=300 width=300 />`
+    heroImageDiv.innerHTML = `${name}<img src="${hero.image.url}" height=200 width=200 />${intelligence}${strength}${speed}${power}`
     })       
 }
 
