@@ -36,7 +36,7 @@ const getSuperHero = (id,name) => {
         const speed = `<p>🏃‍♂️Speed: ${json.powerstats.speed}</p>`
         const power = `<p>💪Power: ${json.powerstats.power}</p>`
         // 'heroImageDiv +=' add a new hero name + image div every time we clicked on the new hero button
-        heroImageDiv.innerHTML = `${name}<img src="${json.image.url}" height=200 width=200 />${intelligence}${strength}${speed}${power} `
+        heroImageDiv.innerHTML = `${name}<img src="${json.image.url}" height=200 width=200 />${intelligence}${strength}${speed}${power}`
     })        
 }
 

@@ -4,10 +4,12 @@
   padding-top: 5px;
   
 }
+
  body{
     display: block;
     background-color: orangered;
  }
+
  .wrapper {
     height: 630px;
     width: 360px;
@@ -19,17 +21,21 @@
     margin: 1px auto;
     justify-content: center;
   }
+
   div.container {
     justify-content: center;
     margin-top: 5px;
     padding-top: 5px;
   }
+
   #heroImage {
     text-align: center;
   }
+
   .action {
     text-align: center;
   }
+
   .intro {
     text-align: center;
   }
