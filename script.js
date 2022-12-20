@@ -30,14 +30,35 @@ const getSuperHero = (id,name) => {
     //Grab the hero image div and attach the image dynamically from the api
     .then(json => {
         console.log(json.powerstats)
-        const name = `<h2>${json.name}</h2>`
-        const intelligence = `<p>🧠Intelligence: ${json.powerstats.intelligence}</p>`
-        const strength = `<p>🤼‍♂️ Strength: ${json.powerstats.strength}</p>`
-        const speed = `<p>🏃‍♂️Speed: ${json.powerstats.speed}</p>`
-        const power = `<p>💪Power: ${json.powerstats.power}</p>`
-        // 'heroImageDiv +=' add a new hero name + image div every time we clicked on the new hero button
-        heroImageDiv.innerHTML = `${name}<img src="${json.image.url}" height=200 width=200 />${intelligence}${strength}${speed}${power}`
+        //Pass the superHero
+        const superHero = json
+        showHeroInfo(superHero)
+        
     })        
+}
+
+const statToEmoji = {
+    intelligence: '🧠',
+    strength: '🤼‍♂️',
+    speed: '🏃‍♂️',
+    durability: '🔋',
+    power: '💪',
+    combat: '🔫'
+}
+
+const showHeroInfo = (character) => {
+    const name = `<h2>${character.name}</h2>`
+
+    const img = `<img src="${character.image.url}" height=200 width=200 />`
+
+    //Grab the property powerstats from the api with the Object.keys method
+    const stats = Object.keys(character.powerstats).map(stat => {
+        //Pass the name of the key stat of powerstats; toUpperCase() capitalizing the whole string
+        return `<p>${statToEmoji[stat]} ${stat.toUpperCase()}: ${character.powerstats[stat]}</p> `
+    }).join('')
+    
+    heroImageDiv.innerHTML = `${name}${img}${stats}`
+    return stats.join('')
 }
 
 const getSearchSuperHero = (name) => {
@@ -45,17 +66,13 @@ const getSearchSuperHero = (name) => {
     fetch(`${BASE_URL}/search/${name}`)
     //Promises: Get the response from the api 
     .then(response => response.json())
-    //Grab the hero image div and attach the image dynamically from the api
+    //Grab the hero infos and attach them dynamically from the api
     .then(json => {
+        // Get the superHero: the second result in the list hero name of the api;
+        //json.results[0] first result and json.results[1] second result
         const hero = json.results[0]
-        const name = `<h2>${hero.name}</h2>`
-        const intelligence = `<p>🧠Intelligence: ${hero.powerstats.intelligence}</p>`
-        const strength = `<p>🤼‍♂️ Strength: ${hero.powerstats.strength}</p>`
-        const speed = `<p>🏃‍♂️Speed: ${hero.powerstats.speed}</p>`
-        const power = `<p>💪Power: ${hero.powerstats.power}</p>`
-        //console.log(hero)
-    // 'heroImageDiv +=' add a new hero image div every we clicked on the new hero button
-    heroImageDiv.innerHTML = `${name}<img src="${hero.image.url}" height=200 width=200 />${intelligence}${strength}${speed}${power}`
+        showHeroInfo(hero)
+        
     })       
 }
 
